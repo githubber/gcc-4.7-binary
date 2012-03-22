@@ -6,8 +6,8 @@ CORES=8
 
 # for mac os x on first build of gcc
 # this is to ensure gcc will know about the memory model
-#CC = clang
-#CXX = clang++
+CC = clang
+CXX = clang++
 
 # Default target executed when no arguments are given to make.
 default_target: all
@@ -145,7 +145,7 @@ fetch:
 		wget -nc http://www.multiprecision.org/mpc/download/mpc-0.9.tar.gz; \
 	fi
 	if [ ! -f gcc*.bz2 ]; then \
-		wget -nc http://www.netgull.com/gcc/snapshots/4.7.0-RC-20120314/gcc-4.7.0-RC-20120314.tar.bz2; \
+		wget -nc http://www.netgull.com/gcc/releases/gcc-4.7.0/gcc-4.7.0.tar.bz2; \
 	fi
 	@echo ''
 	@echo '---------------------------'
