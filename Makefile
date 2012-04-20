@@ -158,10 +158,10 @@ install:
 
 # Clean Targets
 clean:
-	rm -rf gmp mpc mpfr gcc ${INSTALL_DIR} ${PWD}/build
+	rm -rf gmp mpc mpfr gcc ${PWD}/build
 
 clean-all: clean
-	rm -rf *.bz2 *.gz
+	rm -rf *.bz2 *.gz ${INSTALL_DIR}
 
 # Help Target
 help:
