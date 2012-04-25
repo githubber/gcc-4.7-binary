@@ -29,7 +29,7 @@ gmp: unpack
 	@echo '---------------------------'
 	@echo ''
 	cd gmp/build; \
-		../configure --prefix=${PWD}/build; \
+		../configure --prefix=${INSTALL_DIR}; \
 		make -j ${CORES}; \
 		make install;
 	@echo ''
@@ -45,8 +45,8 @@ mpfr: unpack gmp
 	@echo '---------------------------'
 	@echo ''
 	cd mpfr/build; \
-		../configure  --prefix=${PWD}/build \
-		--with-gmp=${PWD}/build;  \
+		../configure  --prefix=${INSTALL_DIR} \
+		--with-gmp=${INSTALL_DIR};  \
 		make -j ${CORES}; \
 		make install;
 	@echo ''
@@ -62,9 +62,9 @@ mpc: unpack gmp mpfr
 	@echo '---------------------------'
 	@echo ''
 	cd mpc/build; \
-		../configure --prefix=${PWD}/build \
-		--with-gmp=${PWD}/build \
-		--with-mpfr=${PWD}/build; \
+		../configure --prefix=${INSTALL_DIR} \
+		--with-gmp=${INSTALL_DIR} \
+		--with-mpfr=${INSTALL_DIR}; \
 		make -j ${CORES}; \
 		make install;
 	@echo ''
@@ -82,9 +82,9 @@ gcc: unpack gmp mpfr mpc
 	cd gcc/build; \
 		../configure --prefix=${INSTALL_DIR} \
 		--enable-checking=release \
-		--with-gmp=${PWD}/build/ \
-		--with-mpfr=${PWD}/build/ \
-		--with-mpc=${PWD}/build/; \
+		--with-gmp=${INSTALL_DIR} \
+		--with-mpfr=${INSTALL_DIR} \
+		--with-mpc=${INSTALL_DIR}; \
 		make -j ${CORES};
 	@echo ''
 	@echo '---------------------------'
