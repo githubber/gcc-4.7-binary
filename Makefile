@@ -19,7 +19,7 @@ all: gcc
 	@echo '  remember to run: make install'
 	@echo '  and to update your ~/.bash_profile '
 	@echo '  PATH=${INSTALL_DIR}/bin:$$PATH '
-	@echo '  DYLD_LIBRARY_PATH=${INSTALL_DIR}/lib:$DYLD_LIBRARY_PATH'
+	@echo '  DYLD_LIBRARY_PATH=${INSTALL_DIR}/lib:$$DYLD_LIBRARY_PATH'
 	@echo '  export PATH'
 	@echo '  export DYLD_LIBRARY_PATH'
 	@echo '---------------------------'
