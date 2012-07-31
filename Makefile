@@ -29,7 +29,7 @@ gmp: unpack
 	@echo '---------------------------'
 	@echo ''
 	cd gmp/build; \
-		../configure --prefix=${INSTALL_DIR}; \
+		../configure --prefix=${INSTALL_DIR} --enable-cxx; \
 		make -j ${CORES}; \
 		make install;
 	@echo ''
@@ -117,6 +117,16 @@ unpack: fetch
 		tar jxvf gcc*.bz2; \
 		mv gcc*/ gcc; \
 		mkdir gcc/build; \
+	fi
+	if [ ! -d ./cloog-ppl ]; then \
+		tar zxvf cloog-ppl*.tar.gz; \
+		mv cloog-ppl*/ cloog-ppl; \
+		mkdir cloog-ppl/build; \
+	fi
+	if [ ! -d ./ppl ]; then \
+		tar zxvf ppl*.tar.gz; \
+		mv ppl*/ ppl; \
+		mkdir ppl/build; \
 	fi
 	if [ ! -d ${INSTALL_DIR} ]; then \
 		mkdir ${INSTALL_DIR}; \
