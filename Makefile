@@ -108,7 +108,7 @@ cloog: unpack gmp ppl
 	@echo '---------------------------'
 	@echo ''
 
-gcc: unpack gmp mpfr mpc ppl cloog
+gcc: unpack gmp ppl cloog mpfr mpc
 	@echo ''
 	@echo '---------------------------'
 	@echo '  gcc compiling'
@@ -156,10 +156,10 @@ unpack: fetch
 		mv gcc*/ gcc; \
 		mkdir gcc/build; \
 	fi
-	if [ ! -d ./cloog-ppl ]; then \
+	if [ ! -d ./cloog ]; then \
 		tar zxvf cloog-ppl*.tar.gz; \
-		mv cloog-ppl*/ cloog-ppl; \
-		mkdir cloog-ppl/build; \
+		mv cloog-ppl*/ cloog; \
+		mkdir cloog/build; \
 	fi
 	if [ ! -d ./ppl ]; then \
 		tar zxvf ppl*.tar.gz; \
