@@ -73,7 +73,42 @@ mpc: unpack gmp mpfr
 	@echo '---------------------------'
 	@echo ''
 
-gcc: unpack gmp mpfr mpc
+ppl: unpack gmp
+	@echo ''
+	@echo '---------------------------'
+	@echo '  ppl compiling'
+	@echo '---------------------------'
+	@echo ''
+	cd ppl/build; \
+		../configure --prefix=${INSTALL_DIR} \
+		--with-gmp-prefix=${INSTALL_DIR}; \
+		make -j ${CORES}; \
+		make install;
+	@echo ''
+	@echo '---------------------------'
+	@echo '  ppl compiled'
+	@echo '---------------------------'
+	@echo ''
+
+cloog: unpack gmp ppl
+	@echo ''
+	@echo '---------------------------'
+	@echo '  cloog compiling'
+	@echo '---------------------------'
+	@echo ''
+	cd cloog/build; \
+		../configure --prefix=${INSTALL_DIR} \
+		--with-gmp=${INSTALL_DIR} \
+		--with-ppl=${INSTALL_DIR}; \
+		make -j ${CORES}; \
+		make install;
+	@echo ''
+	@echo '---------------------------'
+	@echo '  cloog compiled'
+	@echo '---------------------------'
+	@echo ''
+
+gcc: unpack gmp mpfr mpc ppl cloog
 	@echo ''
 	@echo '---------------------------'
 	@echo '  gcc compiling'
@@ -84,7 +119,10 @@ gcc: unpack gmp mpfr mpc
 		--enable-checking=release \
 		--with-gmp=${INSTALL_DIR} \
 		--with-mpfr=${INSTALL_DIR} \
-		--with-mpc=${INSTALL_DIR}; \
+		--with-mpc=${INSTALL_DIR} \
+		--with-ppl=${INSTALL_DIR} \
+		--with-cloog=${INSTALL_DIR} \
+		--enable-languages=c,c++,fortran; \
 		make -j ${CORES};
 	@echo ''
 	@echo '---------------------------'
