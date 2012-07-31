@@ -212,7 +212,7 @@ install:
 
 # Clean Targets
 clean:
-	rm -rf gmp mpc mpfr gcc ${PWD}/build
+	rm -rf gmp mpc mpfr ppl cloog-ppl gcc ${PWD}/build
 
 clean-all: clean
 	rm -rf *.bz2 *.gz ${INSTALL_DIR}
@@ -223,10 +223,12 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean (removes source directories)"
 	@echo "... clean-all (removes source directories and tarballs)"
+	@echo "... cloog"
 	@echo "... fetch"
 	@echo "... gcc"
 	@echo "... gmp"
 	@echo "... install"
 	@echo "... mpc"
 	@echo "... mpfr"
+	@echo "... ppl"
 	@echo "... unpack"
