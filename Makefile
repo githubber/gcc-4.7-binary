@@ -183,23 +183,15 @@ fetch:
 	@echo '  downloading sources'
 	@echo '---------------------------'
 	@echo ''
-	if [ ! -f gmp*.bz2 ]; then \
-		wget -nc ftp://ftp.gmplib.org/pub/gmp-5.0.5/gmp-5.0.5.tar.bz2; \
-	fi
-	if [ ! -f mpfr*.bz2 ]; then \
-		wget -nc http://www.mpfr.org/mpfr-current/mpfr-3.1.1.tar.bz2; \
-	fi
-	if [ ! -f mpc*.gz ]; then \
-		wget -nc http://www.multiprecision.org/mpc/download/mpc-1.0.tar.gz; \
-	fi
-	if [ ! -f gcc*.bz2 ]; then \
-		wget -nc http://www.netgull.com/gcc/releases/gcc-4.7.0/gcc-4.7.0.tar.bz2; \
-	fi
-	if [ ! -f cloog-ppl*.gz ]; then \
-		wget -nc ftp://gcc.gnu.org/pub/gcc/infrastructure/cloog-ppl-0.15.11.tar.gz; \
-	fi
-	if [ ! -f ppl*.gz ]; then \
-		wget -nc ftp://gcc.gnu.org/pub/gcc/infrastructure/ppl-0.11.tar.gz; \
+	if \
+		[[ ! -f gmp*.bz2 ]] || \
+		[[ ! -f mpfr*.bz2 ]] || \
+		[[ ! -f mpc*.gz ]] || \
+		[[ ! -f gcc*.bz2 ]] || \
+		[[ ! -f cloog-ppl*.gz ]] \
+		|| [[ ! -f ppl*.gz ]]; \
+		then \
+		cat urls.txt | xargs -n1 -P 10 wget -nc; \
 	fi
 	@echo ''
 	@echo '---------------------------'
